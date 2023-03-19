@@ -1,0 +1,116 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage[framechange]{colourchange}
+\usepackage[utf8]{vietnam}
+\usepackage{vnlipsum}
+\usepackage{contour} % Gói lệnh làm chữ nổi
+\usepackage{multicol} % Sử dụng cho mục đích mục lục dài
+
+% Dùng cho mục đích nội dung slide quá dài và qua trang
+\setbeamertemplate{frametitle continuation}[from second][(tiếptục)]
+\setbeamertemplate{sectionintoc}[ballnumbered]
+\setbeamertemplate{subsectionintoc}[subsectionsnumbered]
+
+% ĐỊNH NGHĨA VỀ SỐ TRÊN TIÊU ĐỀ 
+\newcounter{chuong}
+\setcounter{chuong}{1}
+\newcommand{\oneline}{\par}
+\newcommand{\setlinetitle}[1]{
+	\renewcommand{\oneline}{#1}}
+\newcommand{\tds}{\ifnum\thesection>0
+	\textbf{\thesection.~\insertsection}
+	\ifnum\thesubsection>0\oneline\normalsize
+	\textbf{\thesection.\thesubsection.~\insertsubsection}\fi
+	\fi}
+\newcommand{\tdc}{\ifnum\thesection>0\textbf{\thechuong.
+		\thesection.~\insertsection}
+	\ifnum\thesubsection>0\oneline\normalsize\textbf{
+		\thechuong.\thesection.\thesubsection.~\insertsubsection}
+	\fi\fi}
+
+% MÔI TRƯỜNG ĐỊNH NGHĨA, ĐỊNH LÝ, ...
+\theoremstyle{plain} % làm chữ nghiêng.
+\newtheorem{dl}{\textbf{Định lý}}
+\numberwithin{dl}{section}
+\newtheorem{md}{\textbf{Mệnh đề}}
+\newtheorem{bd}{\textbf{Bổ đề}}
+
+\theoremstyle{definition} % làm chữ đứng bình thường.
+\newtheorem{dn}{\textbf{Định nghĩa}}
+\numberwithin{dn}{section}
+\newtheorem{vd}{Ví dụ}
+\newtheorem{hq}{\bf Hệ quả}
+%%%%%%%%%%
+\setbeamertemplate{theorems}[numbered]
+
+
+% Đặt tiêu đề cho bài báo cáo
+\title[Tiêu đề của bài báo cáo]{
+	{\color{yellow} \contourlength{2pt} \contour[10]{red}{Nguyễn Quốc Dương}}\\
+	\textbf{MẪU BEAMER CHO BÁO CÁO KHOA HỌC\\
+		BẰNG LATEX}
+}
+
+% Thông tin về tác giả của bài báo cáo, hoặc tên người hướng dẫn
+\author{Nguyễn Quốc Dương}
+\institute[Đại học Quy Nhơn]{\textbf{Khoa học dữ liệu ứng dụng}\\
+	\textbf{Đại học Quy Nhơn}}
+\date{Quy Nhơn, \today}
+
+
+\begin{document}
+% SLIDE TRANG BÌA
+\frame{
+\begin{center}
+\textbf{BỘ GIÁO DỤC VÀ ĐÀO TẠO}\\
+\textbf{{\large TRƯỜNG ĐẠI HỌC QUY NHƠN}}
+\end{center}
+\maketitle
+}
+
+% SLIDE MỤC LỤC 
+\begin{frame}{Nội dung}
+\AtBeginSubsection[]{
+	\begin{frame}{Nộidung}
+		\tableofcontents[currentsection,currentsubsection]
+	\end{frame}
+}
+\end{frame}
+
+\section{Giới thiệu}
+
+
+\begin{frame}{\thesection . Giới thiệu}
+	\begin{dn}
+		contesdsdnt...
+	\end{dn}
+	\begin{dl}
+		vv
+	\end{dl}
+\begin{itemize}
+\item Seamus Bradley viết gói lệnh colourchange.styđể thay đổi mầu
+mỗi trang beamer.
+\item https ://ctan.org/pkg/ colourchange
+
+\item Sau đây là các kỹ thuật dùng gói này:
+\end{itemize}
+\end{frame}
+
+	
+\selectmanualcolour{red}
+\begin{frame}{Trang mầu đỏ}
+	
+{\color{yellow} \contourlength{2pt} \contour[20]{blue}{Nguyễn Quốc Dương}}
+
+\end{frame}
+
+\selectmanualcolor{green}
+\begin{frame}{Trang mầu nõn chuối}
+	sd
+\end{frame}
+\selectmanualcolor{blue}
+\begin{frame}{Trang mầu xanh}
+	sds
+\end{frame}
+
+\end{document}

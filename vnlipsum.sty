@@ -1,0 +1,444 @@
+%%
+%% This is file `vnlipsum.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ./vnlipsum.dtx  (with options: `package')
+%% This is a generated file.
+%% 
+%% Copyright 2018- by Tibor Tomacs
+%% 
+%% Hungarian dummy text (Lorum ipse) for demonstrating the textual elements of a document template
+%% All paragraphs are taken with permission from http://www.lorumipse.hu/.
+%% Thanks to Lorum Ipse Lab (Viktor Nagy and David Takacs) for their work.
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is Tibor Tomacs.
+%% 
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesPackage{vnlipsum}[2020/03/29 v1.0 vietnamese dummy text (Rế mèn phiêu lưu ký)]
+%%
+\newif\if@vnlipsum@num@
+\newif\if@vnlipsum@minnum@
+\newif\if@vnlipsum@par@
+\@vnlipsum@par@true
+\newcounter{vnlipsum@count}
+\def\vnlipsumexp{}
+
+\def\setvnlipsumdefault#1{\def\vnlipsum@default{#1}\vnlipsumsave}
+\def\vnlipsum@default{1-7}
+
+\def\vnlipsum@get#1-#2;{\def\vnlipsum@min{#1}\def\vnlipsum@max{#2}}
+\def\vnlipsum@stripmax#1-{\def\vnlipsum@max{#1}}
+\def\vnlipsum@relax{\relax}
+\def\vnlipsum@minmax#1{%
+  \vnlipsum@get#1-\relax;%
+  \ifx\vnlipsum@max\vnlipsum@relax\def\vnlipsum@max{\vnlipsum@min}%
+      \else\expandafter\vnlipsum@stripmax\vnlipsum@max\fi%
+  \ifx\vnlipsum@min\@empty\def\vnlipsum@min{1}\fi%
+  \ifx\vnlipsum@max\@empty\def\vnlipsum@max{150}\fi%
+}
+
+\def\vnlipsumsave{%
+  \@ifstar\@@vnlipsumsave\@vnlipsumsave
+}
+
+\newcommand{\@@vnlipsumsave}[1][\vnlipsum@default]{%
+  \@vnlipsum@par@false%
+  \@vnlipsumsave[#1]%
+  \@vnlipsum@par@true%
+}
+
+\def\vnlipsum@checking@integer#1{%
+  \afterassignment\vnlipsum@get@args\count@=0#1\hfuzz#1\hfuzz%
+}
+\def\vnlipsum@get@args#1\hfuzz#2\hfuzz{%
+  \if\relax\detokenize{#1}\relax
+    \@vnlipsum@num@true%
+  \else
+    \@vnlipsum@num@false%
+  \fi
+}
+
+\def\vnlipsum@checking{%
+  \vnlipsum@checking@integer{\vnlipsum@min}%
+  \if@vnlipsum@num@%
+    \ifnum \vnlipsum@min=0\@latexerr{\vnlipsum@min\space is not positive number}{}\fi%
+    \@vnlipsum@minnum@true%
+  \else
+    \@latexerr{\vnlipsum@min\space is not number}{}%
+    \@vnlipsum@minnum@false%
+  \fi
+  \vnlipsum@checking@integer{\vnlipsum@max}%
+  \if@vnlipsum@num@%
+    \ifnum \vnlipsum@max=0\@latexerr{\vnlipsum@max\space is not positive number}{}\fi%
+    \ifnum \vnlipsum@max>150\@latexerr{\vnlipsum@max\space is greater than 150}{}\fi%
+    \if@vnlipsum@minnum@\ifnum \vnlipsum@min>\vnlipsum@max\@latexerr{\vnlipsum@min\space is greater than \vnlipsum@max}{}\fi\fi%
+  \else
+    \@latexerr{\vnlipsum@max\space is not number}{}%
+  \fi
+}
+
+\newcommand{\@vnlipsumsave}[1][\vnlipsum@default]{%
+  \expandafter\vnlipsum@minmax\expandafter{#1}%
+  \vnlipsum@checking%
+  \setcounter{vnlipsum@count}{\vnlipsum@min}%
+  \addtocounter{vnlipsum@count}{-1}%
+  \def\vnlipsumexp{}%
+  \@whilenum\value{vnlipsum@count}<\vnlipsum@max\do{%
+    \stepcounter{vnlipsum@count}%
+    \csname vnlipsum@\roman{vnlipsum@count}\endcsname%
+    \ifnum\value{vnlipsum@count}<\vnlipsum@max%
+      \if@vnlipsum@par@\g@addto@macro\vnlipsumexp{\par }%
+        \else\g@addto@macro\vnlipsumexp{ }%
+      \fi%
+    \fi%
+    }%
+}
+
+\def\vnlipsum{%
+  \@ifstar\@@vnlipsum\@vnlipsum
+}
+
+\newcommand{\@@vnlipsum}[1][\vnlipsum@default]{%
+  \vnlipsumsave*[#1]\vnlipsumexp%
+}
+
+\newcommand{\@vnlipsum}[1][\vnlipsum@default]{%
+  \vnlipsumsave[#1]\vnlipsumexp%
+}
+
+\AtEndOfPackage{\vnlipsumsave}
+
+\def\vnlipsum@i{\g@addto@macro\vnlipsumexp{1. Sai lầm lớn nhất đời người là dùng sức khỏe để đánh đổi lấy những vật ngoài thân. Bi ai lớn nhất đời người là dùng sinh mệnh để đổi lấy phiền não và lãng phí lớn nhất đời người là dùng tính mạng để giải quyết rắc rối do bản thân mình tạo ra!}}
+
+\def\vnlipsum@ii{\g@addto@macro\vnlipsumexp{2. Dù rất chua chát nhưng sự thật là, nhà ở có sửa to, rộng hơn thế nào đi nữa cũng chỉ là nơi ở tạm thời. Cái quách sành mới là nhà ở vĩnh hằng của tất cả chúng ta. Thế nên, nhà rộng chẳng bằng tâm rộng, tấm lòng rộng mở, bề ngoài an yên không bằng cõi lòng an yên.}}
+
+\def\vnlipsum@iii{\g@addto@macro\vnlipsumexp{3. Mọi viễn cảnh, mọi ý tưởng bạn mong ước đều có thể trở thành hiện thực, miễn là bạn cam kết và nỗ lực hành động bằng mọi cách. Bạn không thể chỉ tưởng tượng và đợi một bà tiên xuất hiện biến mọi thứ thành sự thực. Thái độ sống là yếu tố quan trọng quyết định cuộc sống của bạn. Chỉ cần bạn thay đổi thái độ sống tích cực thì cuộc đời của bạn sẽ tràn ngập niềm vui và hạnh phúc. Chúc bạn nhiều an lạc trong cuộc sống!}}
+
+\def\vnlipsum@iv{\g@addto@macro\vnlipsumexp{4. Khi tâm linh có xu hướng bình tĩnh lại, tinh thần càng trở nên vĩnh hằng! Giảm, nén dục vọng xuống thấp một chút, đẩy lý tính lên cao, tôi, bạn và chúng ta sẽ cảm nhận thấy: Bình an là phúc, thanh sảng, mới mẻ là lộc và lòng thanh tịnh không chút dục vọng là thọ!}}
+
+\def\vnlipsum@v{\g@addto@macro\vnlipsumexp{5. Tiền bạc khó mua được sức khỏe nhưng sức khỏe sẽ được tăng cường hơn nhờ tiền bạc; tiền bạc khó mua được hạnh phúc nhưng muốn có hạnh phúc, buộc phải có sức khỏe.
+
+Hạnh phúc của đời người không nằm ở danh lợi mà xuất phát từ sức khỏe, cơ thể khỏe mạnh không quyết định bởi tiền bạc mà quyết định bởi sự vận động của mỗi con người!}}
+
+\def\vnlipsum@vi{\g@addto@macro\vnlipsumexp{6. Người kiếm cớ, vin vào những lý do không có thời gian rèn luyện cơ thể sớm muộn sẽ phải bỏ thời gian ra để đi chữa bệnh!}}
+
+\def\vnlipsum@vii{\g@addto@macro\vnlipsumexp{7. Vui vẻ là phương thuốc kỳ diệu giúp con người trường thọ, nỗ lực chăm chỉ là linh đan giúp sức khỏe bền bỉ dẻo dai. Vận động là sự đầu tư cho sức khỏe, trường thọ là sự báo đáp sau những ngày tháng chúng ta bỏ ra để rèn luyện thân thể.}}
+
+\def\vnlipsum@viii{\g@addto@macro\vnlipsumexp{8. Ăn uống quý ở chỗ biết kiêng khem, đọc sách quý ở chỗ biết chọn cái hay để đọc, luyện tập quý ở chỗ duy trì bền lâu;}}
+
+\def\vnlipsum@ix{\g@addto@macro\vnlipsumexp{9. Bạn có 2 cách để thay đổi cuộc đời bạn từ bây giờ: Bắt đầu những hành động tích cực và ngừng ngay những hành động tiêu cực.}}
+
+\def\vnlipsum@x{\g@addto@macro\vnlipsumexp{10. Nụ cười, không cần đầu tư vốn liếng nhưng nó có thể tạo ra của cái. Tán dương, biết khen cái đẹp không cần dùng đến tiền mà vẫn tạo ra sức mạnh ngàn cân. Chia sẻ không mất chi phí nhưng có thể nhân niềm vui lên gấp nhiều lần!}}
+
+\def\vnlipsum@xi{\g@addto@macro\vnlipsumexp{11. Hạnh phúc là khi bạn cảm thấy hài lòng với bạn thân mà không cần sự đồng tình từ ai đó. Bạn phải đối xử tốt với chính bản thân mình trước khi muốn có mối quan hệ tốt với những người khác. Bạn phải tự thấy bản thân mình có giá trị thì mới có thể tự tin trong mắt người khác.}}
+
+\def\vnlipsum@xii{\g@addto@macro\vnlipsumexp{12. Sự nghiệp không cần kinh thiên động địa, có thành tựu là được; tiền bạc không cần thừa thãi, dùng cả đời không hết, đủ tiêu là được; bạn bè không cần lúc nào cũng như hình với bóng, nhớ, nghĩ về nhau là được; con cái không cần nhiều hoặc ít, hiếu thuận là được; tuổi thọ không cần quá một trăm, sống khỏe mỗi ngày là được!}}
+
+\def\vnlipsum@xiii{\g@addto@macro\vnlipsumexp{13. Cuộc sống cũng giống như con tàu đang di chuyển trên đường ray. Bạn không bao giờ được phép quay đầu lại mà chỉ có thể tiến về phía trước.}}
+
+\def\vnlipsum@xiv{\g@addto@macro\vnlipsumexp{14. Con đường đi tới thành công không bao giờ thẳng. Phải trả giá bằng những ngã rẽ sai lầm nhiều lần, bạn mới có thể chọn được con đường đúng nhất. Phải thất bại nhiều lần, bạn mới chạm được đến thành công.}}
+
+\def\vnlipsum@xv{\g@addto@macro\vnlipsumexp{15. Thời gian một đi không trở lại, sinh mệnh con người thì quá ngắn ngủi.
+Khi về già, ta nhận ra sự thật rõ ràng rằng một ngày trôi qua sẽ mãi mãi không quay trở lại, vì vậy ngay từ bây giờ, hãy sống vui vẻ mỗi ngày, để mỗi ngày trở nên ý nghĩa hơn.}}
+
+\def\vnlipsum@xvi{\g@addto@macro\vnlipsumexp{16. Cái gì cũng có thể không tốt nhưng tâm trạng không thể không tốt; cái gì cũng có thể thiếu nhưng tự tin thì không thế thiếu; cái gì cũng có thể không cần nhưng vui vẻ thì bắt buộc phải cần; cái gì cũng có thể quên nhưng việc rèn luyện sức khỏe không được phép quên.}}
+
+\def\vnlipsum@xvii{\g@addto@macro\vnlipsumexp{17. Đối xử tốt với bản thân, hạnh phúc không gì so sánh được. Đối xử tốt với người khác, vui vẻ không gì so sánh được; đối xử tốt với sinh mệnh, sẽ khỏe mạnh không gì so sánh được.}}
+
+\def\vnlipsum@xviii{\g@addto@macro\vnlipsumexp{18. Bốn nguyên tắc vàng trong cuộc sống. Trung thực khi nghèo khó, giản dị khi giàu có, lịch sự khi có uy quyền, im lặng khi giận dữ.}}
+
+\def\vnlipsum@xix{\g@addto@macro\vnlipsumexp{19. Lo lắng chính là điều vô bổ nhất trên đời. Nó giống như việc bạn cầm một chiếc ô và chạy vòng vòng đợi trời mưa xuống.}}
+
+\def\vnlipsum@xx{\g@addto@macro\vnlipsumexp{20. Đừng nhầm lẫn tính cách tôi và thái độ tôi. Tính cách của tôi nói lên con người tôi, còn thái độ của tôi tuỳ thuộc vào con người bạn.}}
+
+\def\vnlipsum@xxi{\g@addto@macro\vnlipsumexp{21. Thời gian và trải nghiệm sẽ làm lành những nỗi đau.
+Bạn cần hiểu rằng một chuyện buồn trong cuộc sống dù có đau đớn đến mức nào rồi đến một ngày nó sẽ chỉ là một phần rất nhỏ bé so với cả quá khứ của bạn và nó cũng không nghiêm trọng đến mức như bạn nghĩ bây giờ.}}
+
+\def\vnlipsum@xxii{\g@addto@macro\vnlipsumexp{22. Nếu không có sức khỏe, trí tuệ, văn hóa, năng lực khó mà bộc lộ ra ngoài và trí thức cũng chẳng có cơ hội để dùng đến.}}
+
+\def\vnlipsum@xxiii{\g@addto@macro\vnlipsumexp{23. Đời người không nằm ở việc sống lâu hay ngắn mà nằm ở việc giác ngộ sớm hay muộn; Sinh mệnh không dùng để đính chính người khác đúng hay sai mà dùng để thực hiện một cuộc sống nhiều màu sắc của chính bản thân chúng ta.}}
+
+\def\vnlipsum@xxiv{\g@addto@macro\vnlipsumexp{24. Người bị oán hận không đau khổ, người oán hận người khác lại chịu thương tổn nghiêm trọng. Thế nên, tuyệt đối không nên hận người để rồi tự hại mình.}}
+
+\def\vnlipsum@xxv{\g@addto@macro\vnlipsumexp{25. Nếu có người lăng mạ nguyền rủa bạn, không nhất thiết phải quay đầu lại xem người đó là ai. Hãy thử nghĩ sâu sắc một chút mà xem, giả sử một con chó điên cắn bạn một cái, lẽ nào bạn cũng cần phải hạ mình cúi thấp sát đất chỉ để cắn trả lại nó một cái?}}
+
+\def\vnlipsum@xxvi{\g@addto@macro\vnlipsumexp{26. Học lực là một tấm huy chương đồng, năng lực là tấm huy chương bạc, nhân duyên, các mối quan hệ xã hội của con người là huy chương vàng và tư duy đứng trên tất cả những tấm huy chương nói trên.}}
+
+\def\vnlipsum@xxvii{\g@addto@macro\vnlipsumexp{27. Phía sau một cuộc đời tươi đẹp là không ít những đau khổ.
+Bạn là con người nên không thể hoàn hảo. Dù bị tổn thương nhưng bạn vẫn sống sót. Hãy nghĩ về một đặc ân quý giá là bạn vẫn được sống, được thở, được suy nghĩ, được tận hưởng và được theo đuổi những gì bạn yêu thích. Đôi khi có những nỗi buồn trên đường đời nhưng vẫn còn rất nhiều niềm vui. Chúng ta vẫn phải tiếp tục tiến về phía trước ngay cả khi chúng ta đang tổn thương, vì chúng ta không bao giờ biết điều gì đang đợi chờ mình.}}
+
+\def\vnlipsum@xxviii{\g@addto@macro\vnlipsumexp{28. Xinh gái, đẹp trai nhưng bản thân không biết, đó chính là khí chất. Có tiền, tài hoa nhưng người khác không biết, đó chính là tu dưỡng.}}
+
+\def\vnlipsum@xxvix{\g@addto@macro\vnlipsumexp{29. Duyên phận là một cuốn sách, nếu lật giở mà không để tâm sẽ bị lướt qua, đọc quá chăm chú sẽ khiến người ta rơi nước mắt.}}
+
+\def\vnlipsum@xxx{\g@addto@macro\vnlipsumexp{30. Hãy cảm ơn người nói cho bạn biết khuyết điểm của bạn, chỉ có người nói cho bạn khuyết điểm của bạn một cách chân thành mới là người đối tốt với bạn.}}
+
+\def\vnlipsum@xxxi{\g@addto@macro\vnlipsumexp{31. Trong cuộc đời mình, bạn sẽ gặp nhiều người. Họ có thể nói những lời tốt đẹp nhưng cuối cùng chỉ có hành động của họ mới nói lên họ là ai. Vì thế hãy chú ý tới những gì mà người ta làm. Hành động của họ sẽ nói với bạn mọi thứ bạn cần biết.}}
+
+\def\vnlipsum@xxxii{\g@addto@macro\vnlipsumexp{32. Những cái không đạt được, bạn sẽ luôn cho rằng nó đẹp đẽ, chính vì bạn hiểu nó quá ít, bạn không có thời gian ở chung với nó. Nhưng rồi một ngày nào đó khi bạn hiểu sâu sắc, bạn sẽ phát hiện nó vốn không đẹp như trong tưởng tượng của bạn.}}
+
+\def\vnlipsum@xxxiii{\g@addto@macro\vnlipsumexp{33. Quan lớn không bằng trí lớn, trí lớn không bằng lương cao, lương cao không bằng thọ lâu, thọ lâu không bằng vui vẻ, không sợ đãi ngộ thấp, chỉ sợ mệnh đoản, không sợ kiếm được ít tiền, chỉ sợ ra đi quá sớm!}}
+
+\def\vnlipsum@xxxiv{\g@addto@macro\vnlipsumexp{34. Cuộc sống không có tình yêu giống như một hoang mạc. Khi bạn tặng hoa hồng cho người khác, tay bạn tự khắc cũng sẽ thơm. Cần lĩnh hội được rằng “yêu người khác thực ra là yêu chính mình”. Hãy để tình yêu giống như ánh nắng buổi chiều sưởi ấm trái tim mỗi con người.}}
+
+\def\vnlipsum@xxxv{\g@addto@macro\vnlipsumexp{35. Không có gì nằm gọn trong lòng bàn tay. Hạnh phúc sẽ không đến gõ cửa tìm bạn, niềm vui cũng không tự nhiên mà có. Hạnh phúc phải nỗ lực mới có thể đạt được, niềm vui luôn phải tìm kiếm không ngừng. Hạnh phúc và niềm vui phải dùng trái tim để cảm nhận, có cảm nhận được hay không còn phụ thuộc vào chính bản thân bạn.}}
+
+\def\vnlipsum@xxxvi{\g@addto@macro\vnlipsumexp{36. Niềm vui luôn đi cùng những người khoan dung, của cải luôn sánh vai cùng những người biết giữ chữ tín, trí tuệ luôn song hành cùng những người cao thượng, sức hấp dẫn luôn xuất hiện bên người hài hước và sức khỏe luôn đến với những người vui vẻ, mở rộng trái tim.}}
+
+\def\vnlipsum@xxxvii{\g@addto@macro\vnlipsumexp{37. Trả thù không thể hóa giải thù hận, chỉ có khoan dung, tha thứ mới có thể làm được việc đó. Hãy cố gắng để cuộc sống của chính mình được thanh thản.}}
+
+\def\vnlipsum@xxxviii{\g@addto@macro\vnlipsumexp{38. Quá khứ đã là lịch sử. Tương lai là một phép màu nhiệm. Còn hiện tại là một món quà của cuộc sống, chính vì thế mà chúng ta gọi đó là một tặng phẩm quý giá. Một người tình nguyện vì bạn mà theo đuổi mọi thứ chưa hẳn đã thật lòng yêu bạn, bởi vì thứ mà người đó theo đuổi được không hẳn thuộc về bạn.}}
+
+\def\vnlipsum@xxxix{\g@addto@macro\vnlipsumexp{39. Đừng quá coi trọng tiền bạc, càng không nên quá chi li tính toán, tiền chỉ như vật ngoài thân, sống có giàu sang phú quý đến đâu thì chết cũng không mang theo được. Nếu có ai đó cần sự giúp đỡ của bạn, hết lòng giúp đỡ họ cũng chính là một niềm vui, nếu dùng tiền mua được sức khỏe và niềm vui tại sao lại không làm chứ? Tiêu tiền giúp bạn hiểu được tiền có thể kiếm được thì cũng có thể tiêu đi, hãy dùng nó để giúp đỡ bản thân và người khác.}}
+
+\def\vnlipsum@xl{\g@addto@macro\vnlipsumexp{40. Có lẽ cần phải trải qua tuổi thanh xuân mới có thể hiểu được tuổi xuân là khoảng thời gian ta sống ích kỷ biết chừng nào. Có lúc nghĩ, sở dĩ tình yêu cần phải đi một vòng tròn lớn như vậy, phải trả một cái giá quá đắt như thế, là bởi vì nó đến không đúng thời điểm. Khi có được tình yêu, chúng ta thiếu đi trí tuệ. Đợi đến khi có đủ trí tuệ, chúng ta đã không còn sức lực để yêu một tình yêu thuần khiết nữa.}}
+
+\def\vnlipsum@xli{\g@addto@macro\vnlipsumexp{41. Bất kỳ một sự đả kích nào cũng không nên trở thành cái cớ cho bạn sa ngã. Bạn không thể thay đổi thế giới nhưng bạn có thể thay đổi bản thân mình. Việc cần làm là chọn lựa một con đường đúng đắn và kiên trì bước tiếp.}}
+
+\def\vnlipsum@xlii{\g@addto@macro\vnlipsumexp{42. Tiền bạc, con cái, quyền lực chỉ là nhất thời, vinh quang là của quá khứ, còn sức khỏe sẽ mãi là của bạn.}}
+
+\def\vnlipsum@xliii{\g@addto@macro\vnlipsumexp{43. Thế giới bạn không bước vào được thì đừng cố chen vào, làm khó người khác, lỡ dở mình, hà tất chứ?}}
+
+\def\vnlipsum@xliv{\g@addto@macro\vnlipsumexp{44. Đôi khi, không cẩn thận biết một số chuyện, mới phát hiện ra rằng những điều bản thân để tâm lại nực cười đến thế.}}
+
+\def\vnlipsum@xlv{\g@addto@macro\vnlipsumexp{45. Ai không giả dối, ai không dễ thay đổi, không ai là ai của ai hết. Hà tất phải coi một số người, một số chuyện quan trọng đến thế.}}
+
+\def\vnlipsum@xlvi{\g@addto@macro\vnlipsumexp{46. Đây là sự thật của mọi sự thật. Bất kể người mà bạn tôn sùng có vĩ đại có tuyệt vời tới đâu, rốt cuộc họ vẫn là con người. Và đã là người thì ai cũng có thiếu sót dù ít dù nhiều, ở mặt nọ mặt kia.}}
+
+\def\vnlipsum@xlvii{\g@addto@macro\vnlipsumexp{47. Có những lúc, không có lần sau, không có cơ hội bắt đầu lại. Có những lúc, bỏ lỡ hiện tại, vĩnh viễn không còn cơ hội nữa.}}
+
+
+\def\vnlipsum@xlviii{\g@addto@macro\vnlipsumexp{48. Đôi khi, rõ ràng chúng ta đã tha thứ cho người ta, song lại không thể thực lòng vui vẻ, đó là bởi vì, chúng ta quên tha thứ cho bản thân mình.}}
+
+\def\vnlipsum@xlix{\g@addto@macro\vnlipsumexp{49. Có sinh sẽ có tử, song chỉ cần bạn vẫn đang có mặt trên đời này, thì phải sống bằng cách tốt nhất. Có thể không có tình yêu, không có đồ hàng hiệu, song không thể không vui vẻ.}}
+
+\def\vnlipsum@l{\g@addto@macro\vnlipsumexp{50. Khi nói đến chuyện làm việc chăm chỉ để đạt được một ước muốn nào đó như: tốt nghiệp đại học, gây dựng sự nghiệp hay đạt được một thành tựu nào đó đòi hỏi thời gian và sự quyết tâm, tôi muốn hỏi bạn một điều: “Bạn có sẵn sàng sống một cuộc đời khác với mọi người hay không?”.}}
+
+\def\vnlipsum@li{\g@addto@macro\vnlipsumexp{51. Họ tốt đến đâu không quan trọng, bởi những thứ đó thuộc về họ.Họ tốt với bạn thế nào mới quan trọng, bởi những thứ đó thuộc về bạn.}}
+
+\def\vnlipsum@lii{\g@addto@macro\vnlipsumexp{52. Sự lợi hại thực sự không phải là bạn quen biết bao nhiêu người, mà là vào lúc bạn gặp hoạn nạn, có bao nhiêu người quen biết bạn.}}
+
+\def\vnlipsum@liii{\g@addto@macro\vnlipsumexp{53. Những phiền não trong cuộc đời được gói gọn trong 12 chữ: Không buông được, nghĩ không thông, nhìn không thấu, quên không nổi!}}
+
+\def\vnlipsum@liv{\g@addto@macro\vnlipsumexp{54. Cuộc sống của bạn chính là ngay lúc bạn đang thở cho tới hơi thở tiếp theo. Hiện tại – ngay ở đây và ngay lúc này – chính là cuộc sống của bạn. Vì thế, hãy tận hưởng từng khoảnh khắc bằng sự tử tế và bình an, đừng sợ hãi hay hối tiếc.}}
+
+\def\vnlipsum@lv{\g@addto@macro\vnlipsumexp{55. Công thức để có một gia đình hạnh phúc
+“Yêu thương, tôn trọng nhau, biết cách quan tâm và chia sẻ, thấu hiểu và bao dung” = “Gia đình hạnh phúc”.}}
+
+\def\vnlipsum@lvi{\g@addto@macro\vnlipsumexp{56. Khi con người ta vẫn còn trên đời, tưởng rằng còn nhiều thời gian, nhiều cơ hội. Thực ra cuộc đời là phép trừ, gặp nhau một lần, ít đi một lần.}}
+
+\def\vnlipsum@lvii{\g@addto@macro\vnlipsumexp{57. Người ta nghĩ sao về bạn, không có liên quan gì đến bạn. Bạn sống thế nào, cũng không có liên quan gì đến người ta.}}
+
+\def\vnlipsum@lviii{\g@addto@macro\vnlipsumexp{58. Thể diện rốt cuộc bao nhiêu tiền một cân? Tại sao chúng ta phải để tâm đến cách nhìn của người khác.}}
+
+\def\vnlipsum@lix{\g@addto@macro\vnlipsumexp{59. Có một ngày bạn sẽ hiểu, lương thiện khó hơn thông minh nhiều. Thông minh là một loại tài năng thiên phú, còn lương thiện lại là một sự lựa chọn.}}
+
+\def\vnlipsum@lx{\g@addto@macro\vnlipsumexp{60. Trong cuộc sống, giai đoạn khó khăn nhất không phải là không ai hiểu bạn, mà là… bạn không hiểu chính mình.}}
+
+\def\vnlipsum@lxi{\g@addto@macro\vnlipsumexp{61. Cuộc đời này thật ngắn ngủi, đừng dành… dù chỉ một phút cho những người, những việc khiến bạn buồn.}}
+
+\def\vnlipsum@lxii{\g@addto@macro\vnlipsumexp{62. Thực ra, con người luôn ngược đời, người yêu bạn chiều chuộng bạn thì bạn không thèm. Người lạnh lùng, ơ hờ với bạn thì bạn lại theo đuổi mãi không thôi. Cuối cùng, người bị tổn thương đầy mình là chính bản thân bạn.}}
+
+\def\vnlipsum@lxiii{\g@addto@macro\vnlipsumexp{63. Cuộc sông luôn công bằng, biết đủ thì luôn hạnh phúc, làm việc tốt, lấy việc giúp đỡ người khác làm niềm vui, bối dưỡng các sở thích của bản thân, bạn sẽ một cuốc sống nhiều màu sắc hơn. Dùng tâm thái bình tĩnh đối mặt với mọi điều,chỉ như vậy bạn mới luôn vui vẻ, khỏe mạnh.}}
+
+\def\vnlipsum@lxiv{\g@addto@macro\vnlipsumexp{64. Đời này, chỉ có chính bạn mới hiểu bạn nhất. Không phải mẹ bạn, không phải người yêu bạn, không phải bạn thân bạn, không phải thầy bói… mà là bạn. Vậy nên hãy tỉnh táo trước khổ đau và nhẹ nhàng trước sung sướng. Sướng khổ là do tâm mình thôi.}}
+
+\def\vnlipsum@lxv{\g@addto@macro\vnlipsumexp{65. Mỗi người đều có cách sống của riêng mình, chúng ta không cần phải ngưỡng mộ cuộc sống của người khác. Có người ngoài mặt tươi cười rạng rỡ nhưng ẩn trong đó là bao giọt nước mắt, lại có người nhìn có vẻ cơ cực nhưng kỳ thực họ lại đang trải qua một cuộc sống rất thoải mái.}}
+
+\def\vnlipsum@lxvi{\g@addto@macro\vnlipsumexp{66. Nhiều thứ chúng ta mong mỏi có được có giá đắt. Nhưng sự thật là, những gì thực sự khiến chúng ta hài lòng lại hoàn toàn miễn phí – đó là tình yêu, là tiếng cười và là những giây phút miệt mài theo đuổi đam mê của mình.}}
+
+\def\vnlipsum@lxvii{\g@addto@macro\vnlipsumexp{67. Đừng xem trọng bề ngoài vì nó có thể đánh lừa bạn. Đừng xem trọng sự giàu sang vì nó có thể mất dần. Hãy đến với người biết làm bạn cười, vì chỉ có nụ cười mới biến ngày buồn thành vui.}}
+
+\def\vnlipsum@lxviii{\g@addto@macro\vnlipsumexp{68. Một lời bất cẩn có thể gây bất hòa. Một lời độc ác có thể làm hỏng cả cuộc đời. Một lời đúng lúc có thể làm giảm căng thẳng. Một lời yêu thương có thể đem lại hạnh phúc.}}
+
+\def\vnlipsum@lxix{\g@addto@macro\vnlipsumexp{69. Luôn đặt mình vào vị trí của người khác. Nếu trong vị trí đó, bạn thấy đau, có lẽ người kia cũng sẽ cảm thấy như vậy.}}
+
+\def\vnlipsum@lxx{\g@addto@macro\vnlipsumexp{70. Đừng hạ thấp giá trị bản thân bằng cách so sánh mình với những người khác. Đó là vì mỗi chúng ta là những con người hoàn toàn khác nhau, chúng ta là những cá nhân độc lập với những tài năng riêng biệt.}}
+
+\def\vnlipsum@lxxi{\g@addto@macro\vnlipsumexp{71. Chớ để cuộc sống trôi tuột qua kẽ tay vì mãi đắm mình trong quá khứ hoặc mơ mộng ảo tưởng về tương lai. Hãy tận hưởng cuộc sống trong từng khoảnh khắc, bạn sẽ cảm thấy từng ngày trôi qua thật trọn vẹn.}}
+
+\def\vnlipsum@lxxii{\g@addto@macro\vnlipsumexp{72. Bạn bè bạn sẽ không cần bạn phải giải thích gì cả, còn với kẻ thù thì dù bạn có giải thích bao nhiêu họ cũng chẳng tin đâu. Hãy cứ làm những gì mà thâm tâm bạn biết là đúng.}}
+
+\def\vnlipsum@lxxiii{\g@addto@macro\vnlipsumexp{73. Cơm nên ăn từng miếng, việc nên làm từng phần. Không có việc gì là một lần giải quyết xong, mà bất cứ điều gì cũng cần một quá trình trải thảm. Đừng cả ngày mải mê theo đuổi ngược xuôi, mà hãy sống thật ung dung tự tại.}}
+
+\def\vnlipsum@lxxiv{\g@addto@macro\vnlipsumexp{74. Đừng quá bình thản mà bước chân chậm rãi. Bởi vào những thời điểm then chốt, bạn vẫn cần cho bản thân tỏa sáng, để những ngày tháng bình lặng thêm điểm nhấn sắc màu.}}
+
+\def\vnlipsum@lxxv{\g@addto@macro\vnlipsumexp{75. Bất kể sự tình nào cũng có tính hai mặt, đôi khi không quan trọng đúng sai. Điều bạn cho là sai nhưng có thể người khác nhìn nhận là đúng; điều bạn nỗ lực đạt được rất có thể là những gì người khác muốn buông tay.}}
+
+\def\vnlipsum@lxxvi{\g@addto@macro\vnlipsumexp{76. Xa cách tình thân là nỗi đau cắt da cắt thịt. Lãnh đạm một chút, bao dung một chút sẽ làm tâm bạn rộng mở hơn, hòa ái hơn, cũng ấm áp hơn.}}
+
+\def\vnlipsum@lxxvii{\g@addto@macro\vnlipsumexp{77. Kiên trì những thứ không đáng kiên trì thì về sau sẽ hối hận. Nhưng bỏ qua những thứ không nên bỏ qua thì hối hận ngay tức khắc.}}
+
+\def\vnlipsum@lxxviii{\g@addto@macro\vnlipsumexp{78. Địa vị hay danh vọng chỉ giống như một chiếc bình rỗng, nền tảng tu dưỡng và đạo đức mới là thứ rượu chứa trong bình.
+Cất chứa trong bình là rượu nho hảo hạng hay chỉ là thứ nước suồng sã - tất cả đều tuỳ nơi tâm bạn.}}
+
+\def\vnlipsum@lxxix{\g@addto@macro\vnlipsumexp{79. Khi sự nghiệp thành công cần trân trọng sức khỏe bản thân mình, sự nghiệp không thành công lại càng phải làm bản thân khỏe mạnh hơn nữa.}}
+
+\def\vnlipsum@lxxx{\g@addto@macro\vnlipsumexp{80. Có trí tuệ thì phải có khả năng tự kiềm chế. Nếu không, do biết nhiều sẽ thiệt thân. Nhận biết tỉnh giác là quan trọng, nhưng nếu không có khả năng quyết đoán thì cái biết ấy cũng là vô ích.}}
+
+\def\vnlipsum@lxxxi{\g@addto@macro\vnlipsumexp{81. Đời người rất ngắn ngủi, cho nên đừng đem những ngày tháng quý giá của mình lãng phí vào nhầm người. Nếu như người khác cần bạn, họ sẽ dành cho bạn một khoảng không gian. Nhiều lúc, chúng ta không cần phải “giãy giụa” trong đau khổ mà thay vào đó hãy chọn cách “buông bỏ”. Hãy nhớ kỹ, bạn bè tốt là người luôn xuất hiện bên bạn những lúc bạn cần. Những người mà khi con ở vào thời điểm huy hoàng mới đến kết giao thì đó chưa chắc là bạn chân chính.}}
+
+\def\vnlipsum@lxxxii{\g@addto@macro\vnlipsumexp{82. Tình yêu là thứ không thể nào quên lãng được. Nhưng lúc nào cũng từ bỏ được.
+Còn tình yêu thật sự, thì không cần nhớ đến nó, nhưng lúc nào cũng sống tự nhiên cùng với nó. Cho nên không có vấn đề quên lãng hay từ bỏ.}}
+
+\def\vnlipsum@lxxxiii{\g@addto@macro\vnlipsumexp{83. Đừng quá cố chấp để tranh luận.
+Có rất nhiều người không nhận thức được rằng mình cũng có sai phạm, mà luôn hy vọng mình vĩnh viễn đúng. Thực tình là đã không biết rằng, điều này là rất nguy hiểm trong các mối quan hệ với người khác. Ngoài ra nó còn đem lại cho chúng ta và cả người khác áp lực và sự thống khổ lớn. Vì vậy, lúc mà bạn muốn vùi đầu mình vào để tranh luận đúng sai, hãy hỏi lại mình xem làm như vậy có thực sự tốt không? Nó thực sự đem lại lợi ích cho cả mình và người khác sao?}}
+
+\def\vnlipsum@lxxxiv{\g@addto@macro\vnlipsumexp{84. Đừng mãi trách cứ sai lầm của bản thân
+Bạn có thể yêu quý nhầm người hay cũng có thể khóc vì những sự việc không đáng nhưng có một điểm là hãy biết tha thứ cho bản thân mình, đừng mãi nhìn vào sai lầm của bản thân để rồi trách cứ mình. Bởi vì những sai lầm ấy, ít nhất nó cũng giúp bạn biết tránh khi lần sau gặp lại, từ đó giúp bạn trưởng thành hơn. Hãy nhớ rằng, mỗi một sai lầm hôm nay sẽ là kinh nghiệm trong tương lai giúp bạn hoàn thiện bản thân mình, thay vì mãi trách cứ bản thân, chi bằng hãy sửa chữa nó.}}
+
+\def\vnlipsum@lxxxv{\g@addto@macro\vnlipsumexp{85. Tôi tự nhủ với bản thân mình rằng, cần phải sống chân thực. Bất kể người khác nhìn mình bằng con mắt nào đi chăng nữa, dù cả thế giới phủ định, tôi vẫn có bản thân tin tưởng mình.
+Tôi tự nhủ với bản thân mình rằng, cần phải sống vui vẻ, không cần nghĩ có phải có ai đang để tâm tới mình hay không. Bởi một người cũng có thể sống cuộc sống tươi đẹp.
+Tôi tự nhủ với bản thân mình rằng, những lúc buồn có thể khóc đến nhem nhuốc cả mặt, nhưng sau những giờ phút đó, cần phải ngẩng đầu cười thật xinh tươi}}
+
+\def\vnlipsum@lxxxvi{\g@addto@macro\vnlipsumexp{86. Cuộc sống, là một bộ sách vô số chữ, mỗi người có cách đọc của riêng mình. Cuộc sống, là một câu hỏi có nhiều lời giải, mỗi người có đáp án của riêng mình. Cuộc sống, là một tách trà, mỗi người có cách thưởng thức của riêng mình. Những lúc không vui, hãy tự nhủ với bản thân: Rằng tất thảy của tất thảy, chính là để cuộc sống, thoải mái hơn, vui vẻ hơn, hạnh phúc hơn.}}
+
+
+\def\vnlipsum@lxxxvii{\g@addto@macro\vnlipsumexp{87. Cuộc sống này cũng không phải toàn niềm vui, niềm hạnh phúc mà xen lẫn vào đó là những nỗi buồn, nỗi đau thương. Nhưng dù cho cuộc sống có thế nào đi nữa, hãy sống vì bản thân mình và người thân của mình các bạn nhé, hãy theo đuổi ước mơ của mình, hãy làm công việc mà mình thích…Cuộc sống là không từ bỏ!}}
+
+\def\vnlipsum@lxxxviii{\g@addto@macro\vnlipsumexp{88. Hạnh phúc không có một đáp án chuẩn mực, niềm vui cũng không chỉ xuất phát từ một con đường. Thu lại ánh mắt ngưỡng mộ người khác và nhìn lại tâm hồn mình. Sống cuộc sống mình mong muốn chính là những ngày tháng tươi đẹp nhất, cách sống mà mình muốn mới chính là cách sống tốt nhất.}}
+
+
+\def\vnlipsum@lxxxix{\g@addto@macro\vnlipsumexp{89. Đối với mỗi chúng ta, ai cũng đều hiểu, niềm vui và hạnh phúc sẽ chẳng bao giờ tồn tại mãi mãi. Và trong chúng ta, ai cũng đều hiểu và chấp nhận chuyện này một cách dễ dàng. Tuy nhiên, lại chẳng có mấy người có thể chấp nhận sự thật tương tự đối với sự đau khổ và thất bại. Tại sao lại như vậy? Vốn thời gian chúng ta chẳng còn nhiều, vậy tại sao không buông bỏ những thứ đó để đi tìm niềm vui và hạnh phúc tiếp theo. Không phải như thế mọi thứ sẽ tốt đẹp hơn sao? }}
+
+\def\vnlipsum@xc{\g@addto@macro\vnlipsumexp{90. Mỗi chúng ta là một cá thể, chả ai có thể giống ai được nên đừng bắt chước nhau làm gì vì ông trời cũng chẳng rảnh để tạo một mớ đồ chơi giống nhau đâu. }}
+
+\def\vnlipsum@xci{\g@addto@macro\vnlipsumexp{91. Cuộc đời này, bạn là duy nhất. Do đó, hãy tự tin vào bản thân mình. Sống tích cực và phấn đấu hết mình, mọi thứ sẽ tốt đẹp hơn. Đừng cố gắng nhìn vào ai đó rồi bắt chước. Vì dù bắt chước đến mấy, bạn cũng chẳng thể giống được. Và “phiên bản fake” thì làm sao có thể chất lượng bằng “hàng thật”. Vì vậy, hãy cứ là chính mình, làm “hàng thật” đi nhé! }}
+
+
+\def\vnlipsum@xcii{\g@addto@macro\vnlipsumexp{92. Tất cả những gì đã qua thì hãy cho nó qua đi. Dù khóc hay cười, bạn cũng chẳng thay đổi được nó. Vậy chẳng có lý do gì ta phải buồn, phải khóc vì những thứ đã qua đi. Nhìn về hiện tại, mọi thứ không phải vẫn đang chuyển động cùng bạn. Và rồi sẽ có những thứ tốt đẹp hơn. }}
+
+\def\vnlipsum@xciii{\g@addto@macro\vnlipsumexp{93. Nếu bạn muốn biến những giấc mơ của mình thành hiện thực, điều đầu tiên mà bạn cần phải làm là thức dậy. }}
+
+\def\vnlipsum@xciv{\g@addto@macro\vnlipsumexp{94. Nói chính xác, ước mơ mãi mãi là giấc mơ nếu bạn không thức dậy. Cách duy nhất khiến ước mơ thành hiện thực là hãy tỉnh dậy và bắt đầu nó ngay. Mơ ước là một thứ gì đó rất tuyệt vời. Nhưng nó cũng đầy mộng ảo. Ước mơ 10 nhưng thực hiện được 1 đó là thành công. Và cách thực hiện ước mơ duy nhất đó là hành động ngay. }}
+
+\def\vnlipsum@xcv{\g@addto@macro\vnlipsumexp{95. Người ta hay bảo đẹp trai không bằng chai mặt, cố gắng hoài cuối cùng cũng sẽ được vì cứ đứa nào nhây đứa đó sẽ thắng thôi. }}
+
+\def\vnlipsum@xcvi{\g@addto@macro\vnlipsumexp{96. Nếu bạn đã tốn công tốn sức để làm một vấn đề gì đó. Trước sau gì, bạn cũng sẽ nhận được “trái ngọt”. Tất nhiên, điều này cũng đồng nghĩa với việc. Nếu bạn làm cái gì đó một cách hời hợt và không chuyên tâm. Kết quả sẽ không được như ý. Do đó, đừng trách rằng bản thân mình thất bại. Nếu có trách, hãy trách mình chưa đủ trình độ, chưa đủ tâm huyết để thành công.}}
+
+\def\vnlipsum@xcvii{\g@addto@macro\vnlipsumexp{97. Nếu người khác tôn trọng bạn, hãy tôn trọng họ. Nếu họ không tôn trọng bạn, vẫn cứ tôn trọng họ. Đừng để hành động của người khác ảnh hưởng đến nhân cách tốt đẹp của bạn. Bởi lẽ, bạn chính là bạn chứ không phải một ai khác. }}
+
+\def\vnlipsum@xcviii{\g@addto@macro\vnlipsumexp{98. Cuộc sống này vốn là của bạn, thái độ và tính cách cũng là của bạn. Nguyên tắc sống cũng là của bạn. Hà có gì phải vì kẻ khác mà thay đổi. Dù ai có đối xử với bạn thế nào, hãy nhớ bạn sống vì bạn, không phải vì kẻ khác. Đừng hành động dựa trên cách đối xử của người khác. }}
+
+\def\vnlipsum@xcix{\g@addto@macro\vnlipsumexp{99. Khi chúng ta mong ước cuộc đời không nghịch cảnh, hãy nhớ rằng cây sồi trở nên mạnh mẽ trong gió ngược và kim cương hình thành dưới áp lực. }}
+
+\def\vnlipsum@c{\g@addto@macro\vnlipsumexp{100. Nghịch cảnh càng lớn, con người ta sẽ càng trưởng thành hơn. Khó khăn càng nhiều, thành công sẽ càng cao. Do đó, đừng oán trách số phận này khắc nghiệt. Nếu có, hãy tự hỏi tại sao cuộc sống mình quá yên bình. Muốn đá thành ngọc, không thể không mãi. Muốn thực hiện mơ ước, đừng ngại gian khổ khó khăn. }}
+
+\def\vnlipsum@ci{\g@addto@macro\vnlipsumexp{101. Hãy cẩn thận với những gì bạn nói. Một khi đã nói ra nó có thể được tha thứ nhưng không thể nào quên đi. }}
+
+\def\vnlipsum@cii{\g@addto@macro\vnlipsumexp{102. Lời nói là một trong những thứ vũ khí đáng sợ nhất của con người. Nó có thể không gây tổn thương thể xác. Nhưng lại có khả năng gây tổn thương tinh thần và tâm hồn sâu sắc. Do đó, hãy lựa lời nói, tránh khiến người khác tổn thương, đặc biệt là những người yêu mến ta. Vì dù họ tha thứ, nhưng họ không có khả năng quên đi. }}
+
+\def\vnlipsum@ciii{\g@addto@macro\vnlipsumexp{103. Đừng bao giờ hối tiếc những gì đã xảy ra trong quá khứ, vì thời điểm ấy đó chính xác là những gì bạn muốn.}}
+
+\def\vnlipsum@civ{\g@addto@macro\vnlipsumexp{104. Đừng chỉ vì ai đó trông mạnh mẽ, không có nghĩa là tất cả mọi thứ đều ổn. Ngay cả những người mạnh mẽ nhất cũng cần một người bạn để dựa vào vai mà khóc. Hãy kết hôn với người mà bạn thích chuyện trò với người đó, vì khi bạn già đi, bạn sẽ phát hiện ra rằng thích chuyện trò là một ưu điểm lớn.}}
+
+\def\vnlipsum@cv{\g@addto@macro\vnlipsumexp{105. Bạn bè bạn sẽ không cần bạn phải giải thích gì cả, còn với kẻ thù thì dù bạn có giải thích bao nhiêu họ cũng chẳng tin đâu. Hãy cứ làm những gì mà thâm tâm bạn biết là đúng.}}
+
+\def\vnlipsum@cvi{\g@addto@macro\vnlipsumexp{106. Nhiều thứ chúng ta mong mỏi có được có giá đắt. Nhưng sự thật là, những gì thực sự khiến chúng ta hài lòng lại hoàn toàn miễn phí – đó là tình yêu, là tiếng cười và là những giây phút miệt mài theo đuổi đam mê của mình.}}
+
+\def\vnlipsum@cvii{\g@addto@macro\vnlipsumexp{107. Đừng xem trọng bề ngoài vì nó có thể đánh lừa bạn. Đừng xem trọng sự giàu sang vì nó có thể mất dần. Hãy đến với người biết làm bạn cười, vì chỉ có nụ cười mới biến ngày buồn thành vui.}}
+
+\def\vnlipsum@cviii{\g@addto@macro\vnlipsumexp{108. Đời này, chỉ có chính bạn mới hiểu bạn nhất. Không phải mẹ bạn, không phải người yêu bạn, không phải bạn thân bạn, không phải thầy bói... mà là bạn. Vậy nên hãy tỉnh táo trước khổ đau và nhẹ nhàng trước sung sướng. Sướng khổ là do tâm mình thôi.}}
+
+\def\vnlipsum@cix{\g@addto@macro\vnlipsumexp{109. Luôn đặt mình vào vị trí của người khác. Nếu trong vị trí đó, bạn thấy đau, có lẽ người kia cũng sẽ cảm thấy như vậy.}}
+
+\def\vnlipsum@cx{\g@addto@macro\vnlipsumexp{110. Đừng hạ thấp giá trị bản thân bằng cách so sánh mình với những người khác. Đó là vì mỗi chúng ta là những con người hoàn toàn khác nhau, chúng ta là những cá nhân độc lập với những tài năng riêng biệt.}}
+
+\def\vnlipsum@cxi{\g@addto@macro\vnlipsumexp{111. Chớ để cuộc sống trôi tuột qua kẽ tay vì mãi đắm mình trong quá khứ hoặc mơ mộng ảo tưởng về tương lai. Hãy tận hưởng cuộc sống trong từng khoảnh khắc, bạn sẽ cảm thấy từng ngày trôi qua thật trọn vẹn.}}
+
+\def\vnlipsum@cxii{\g@addto@macro\vnlipsumexp{112. Chớ vội vã băng nhanh qua cuộc đời đến nỗi quên mất mình đến từ nơi nào và điểm dừng chân sẽ là ở đâu.}}
+
+\def\vnlipsum@cxiii{\g@addto@macro\vnlipsumexp{113. Quá khứ đã là lịch sử. Tương lai là một phép màu nhiệm. Còn hiện tại là một món quà của cuộc sống, chính vì thế mà chúng ta gọi đó là một tặng phẩm quý giá.}}
+
+\def\vnlipsum@cxiv{\g@addto@macro\vnlipsumexp{114. Giữa thành công và thất bại có con sông gian khổ... trên con sông đó có cây cầu tên là sự cố gắng.}}
+
+\def\vnlipsum@cxv{\g@addto@macro\vnlipsumexp{115. Con người sinh ra không phải để tan biến đi như một hạt cát vô danh. Họ sinh ra để in dấu lại trên mặt đất, in dấu lại trong trái tim người khác.}}
+
+\def\vnlipsum@cxvi{\g@addto@macro\vnlipsumexp{116. Thiên Chúa ban cho tất cả mọi người 24 giờ, còn 24 giờ ấy có giá trị bao nhiêu là do mỗi người tự định lấy.}}
+
+\def\vnlipsum@cxvii{\g@addto@macro\vnlipsumexp{117. Làm người phải tự tin, nhưng không được tự tin đến mức tự phụ. Làm người nên khiêm tốn, nhưng không được khiêm tốn đến mức đánh mất lòng tự tin của mình.}}
+
+\def\vnlipsum@cxviii{\g@addto@macro\vnlipsumexp{118. Cuộc sống, ngay cả khi có một ngàn lý do để làm cho bạn khóc, bạn vẫn phải tìm một triệu lý do để giữ nụ cười.}}
+
+\def\vnlipsum@cxix{\g@addto@macro\vnlipsumexp{119. Bạn không thể điều khiển hướng gió, chỉ có thể điều khiển cánh buồm. Bạn không cần phải thấy hết các bậc thang mà chỉ cần đi bước đầu tiên với một niềm tin.}}
+
+\def\vnlipsum@cxx{\g@addto@macro\vnlipsumexp{120. Dường như càng lớn, người ta càng phải đối diện với nhiều sự lựa chọn hơn lúc nhỏ, không chỉ đơn thuần là thích thì có thể chọn. Mọi thứ trở nên rắc rối hơn và luôn luôn có sự do dự song song tồn tại. Cuối cùng, dù là lựa chọn con đường nào đi nữa, chúng ta sẽ vẫn chịu tổn thương.}}
+
+\def\vnlipsum@cxxi{\g@addto@macro\vnlipsumexp{121. Trên đời này, có rất nhiều điều là vĩnh cửu, nhưng tuyệt nhiên, tình yêu không phải là 1 trong số đó.}}
+
+\def\vnlipsum@cxxii{\g@addto@macro\vnlipsumexp{122. Trong lòng mỗi người đều có nhiều cánh cửa, những đau buồn suy nghĩ, đôi khi không cần thiết phải mở toang cho mọi người cùng thấy.}}
+
+\def\vnlipsum@cxxiii{\g@addto@macro\vnlipsumexp{123. Ai cũng có chuyện khó khăn của mình, cũng có điều bất lực với bản thân, cũng có vài nỗi bế tắc và những khi sợ hãi. Thay vì khuyên nhau những lời khuyên sáo rỗng, thì chúng ta nên tìm một ai đó, đủ an tâm, đủ bình yên để bảo là mệt, dựa đầu vào người kia mà khóc. Ai cùng từng nhiều lần yếu đuối nhưng chưa ai dám thừa nhận, chỉ vờ khoác lên mình sự cứng rắn. Để rồi theo năm tháng mà không nhìn ra bản thân mình.}}
+
+\def\vnlipsum@cxxiv{\g@addto@macro\vnlipsumexp{124. Tôi nghĩ rằng, sau cùng, cuộc sống cũng chỉ là một sự chia ly. Nhưng điều đau đớn nhất, chính là không kịp nói lời tạm biệt.}}
+
+\def\vnlipsum@cxxv{\g@addto@macro\vnlipsumexp{125. Sống ở đời chẳng ai muốn mình trở thành người xấu, ai cũng muốn một cuộc sống ngẩng cao đầu không hổ với người, không thẹn với lòng. Thế nhưng sự đời đôi khi chẳng như ý muốn, đôi khi người ta phải sống hai mặt để đổi lấy hai chữ bình yên.}}
+
+\def\vnlipsum@cxxvi{\g@addto@macro\vnlipsumexp{126. Nỗi đau được san sẻ thì nỗi đau vơi đi, nỗi đau bị chôn sâu thì sẽ nhân lên một nỗi đau gấp bội. Hãy mở lòng chia sẻ với ai đó vì ít nhất bạn cũng sẽ tìm được chút bình yên trong tâm hồn.}}
+
+\def\vnlipsum@cxxvii{\g@addto@macro\vnlipsumexp{127. Tôi nghĩ rằng mục đích của cuộc đời là sống hữu ích, sống có trách nhiệm, được tôn trọng và biết yêu thương. Trên hết, điều thật sự có ý nghĩa là: Sống cho ai đó, vì cái gì đó và tạo nên dấu ấn riêng của bạn trên thế gian này.}}
+
+\def\vnlipsum@cxxviii{\g@addto@macro\vnlipsumexp{128. Thỉnh thoảng bạn cần đi xa, không phải để cho ai đó nhận ra vị trí của bạn trong lòng họ. Mà để chính bạn hiểu và nhận ra giá trị của chính bản thân mình. }}
+
+\def\vnlipsum@cxxix{\g@addto@macro\vnlipsumexp{129. Có ba thứ cần lãng quên để cuộc sống bình yên hơn:
++ Lãng quên về tuổi tác.
++ Lãng quên đi quá khứ.
++ Lãng quên hết những ân oán.}}
+
+\def\vnlipsum@cxxx{\g@addto@macro\vnlipsumexp{130. Bốn cái cần có để cuộc sống ý nghĩa hơn: Có sự nhiệp, có bạn tri kỷ, có người bạn trăm năm với tình yêu đích thực, cuối cùng là một mái ấm gia đình.}}
+
+\def\vnlipsum@cxxxi{\g@addto@macro\vnlipsumexp{131. Sống đơn giản hơn với sáu điều này: Không nhất thiết đới mới chịu ăn, không nên khát mới uống, hối hận đúng lúc đừng để đến già, hãy nghỉ trước khi bạn thấy mệt, khám sức khỏe trước lúc bệnh, đừng nên buồn ngủ mới đi ngủ.}}
+
+\def\vnlipsum@cxxxii{\g@addto@macro\vnlipsumexp{132. Mỗi con người sinh ra trên thế giới không phải để tan biến đi như những hạt cát vô danh. Họ sinh ra là để in lại dấu chân trên mặt đất, in dấu trong lòng những người khác.}}
+
+\def\vnlipsum@cxxxiii{\g@addto@macro\vnlipsumexp{133. Đừng che dấu yêu thương. Hãy nói cho mọi người xung quanh bạn biết bạn yêu thương họ rất nhiều. Hãy nói những câu nói đẹp và ngọt ngào nhất khi bạn có thể nói. Đừng giữ lại những lời nói yêu thương quan bên kia thế giới.}}
+
+\def\vnlipsum@cxxxiv{\g@addto@macro\vnlipsumexp{134. Hãy trao cho người khác những câu nói chân thành nhất. Hãy cho người đó biết đấy là cái quý giá nhất mà bạn có.}}
+
+\def\vnlipsum@cxxxv{\g@addto@macro\vnlipsumexp{135. Hãy luôn nhớ câu nói “không có gì là tuyệt đối”. Đừng buồn khi bạn thất bại, sai lầm nhất của con người là không mắc sai lầm.}}
+
+\def\vnlipsum@cxxxvi{\g@addto@macro\vnlipsumexp{136. Đừng cố kiếm nhiều tiền, ước mơ cao sang, cố gắng khiến người khác biết bạn giàu có. Hãy cố gắng làm cho cuộc sống của bạn ý nghĩa hơn. Vì bạn không thể mang theo gì khi chết đâu.}}
+
+\def\vnlipsum@cxxxvii{\g@addto@macro\vnlipsumexp{137. Nếu người khác tôn trọng bạn, hãy tôn trọng họ. Nếu họ không tôn trọng bạn, vẫn cứ tôn trọng họ, đừng để hành động của người khác ảnh hưởng đến nhân cách tốt đẹp của bạn. Bởi lẽ, bạn chính là bạn chứ không phải là một ai khác.}}
+
+\def\vnlipsum@cxxxviii{\g@addto@macro\vnlipsumexp{138. Tiền xu luôn gây ra tiếng động… nhưng tiền giấy lại luôn im lặng. Vì thế khi giá trị của bạn tăng lên, hãy giữ cho mình luôn khiêm tốn và nói ít đi!}}
+
+\def\vnlipsum@cxxxix{\g@addto@macro\vnlipsumexp{139. Không quan trọng bạn phạm bao nhiêu sai lầm, không quan trọng bạn bước đi chậm chạp đến đâu, bạn vẫn chiến thắng những kẻ không bao giờ biết đến 2 từ “cố gắng”.}}
+
+\def\vnlipsum@cxl{\g@addto@macro\vnlipsumexp{140. Dù rất chua chát nhưng sự thật là, nhà ở có sửa to, rộng hơn thế nào đi nữa cũng chỉ là nơi ở tạm thời. Cái quách sành mới là nhà ở vĩnh hằng của tất cả chúng ta. Thế nên, nhà rộng chẳng bằng tâm rộng, tấm lòng rộng mở, bề ngoài an yên không bằng cõi lòng an yên.}}
+
+\def\vnlipsum@cxli{\g@addto@macro\vnlipsumexp{141. Tiền bạc khó mua được sức khỏe nhưng sức khỏe sẽ được tăng cường hơn nhờ tiền bạc; tiền bạc khó mua được hạnh phúc nhưng muốn có hạnh phúc, buộc phải có sức khỏe. Hạnh phúc của đời người không nằm ở danh lợi mà xuất phát từ sức khỏe, cơ thể khỏe mạnh không quyết định bởi tiền bạc mà quyết định bởi sự vận động của mỗi con người!}}
+
+\def\vnlipsum@cxlii{\g@addto@macro\vnlipsumexp{142. Nếu có người lăng mạ nguyền rủa bạn, không nhất thiết phải quay đầu lại xem người đó là ai. Hãy thử nghĩ sâu sắc một chút mà xem, giả sử một con chó điên cắn bạn một cái, lẽ nào bạn cũng cần phải hạ mình cúi thấp sát đất chỉ để cắn trả lại nó một cái?}}
+
+\def\vnlipsum@cxliii{\g@addto@macro\vnlipsumexp{143. Chiếc túi rỗng dạy bạn một triệu điều trong cuộc sống nhưng chiếc túi đầy lại làm hỏng bạn trong một triệu cách.}}
+
+\def\vnlipsum@cxliv{\g@addto@macro\vnlipsumexp{144. Đừng xem trọng bề ngoài vì nó có thể đánh lừa bạn. Đừng xem trọng sự giàu sang vì nó có thể mất dần. Hãy đến với người biết làm bạn cười, vì chỉ có nụ cười mới biến ngày buồn thành vui.}}
+
+\def\vnlipsum@cxlv{\g@addto@macro\vnlipsumexp{145. Đời này, chỉ có chính bạn mới hiểu bạn nhất. Không phải mẹ bạn, không phải người yêu bạn, không phải bạn thân bạn, không phải thầy bói… mà là bạn. Vậy nên hãy tỉnh táo trước khổ đau và nhẹ nhàng trước sung sướng. Sướng khổ là do tâm mình thôi.}}
+
+\def\vnlipsum@cxlvi{\g@addto@macro\vnlipsumexp{146. Một lời bất cẩn có thể gây bất hòa. Một lời độc ác có thể làm hỏng cả cuộc đời. Một lời đúng lúc có thể làm giảm căng thẳng. Một lời yêu thương có thể đem lại hạnh phúc.}}
+
+\def\vnlipsum@cxlvii{\g@addto@macro\vnlipsumexp{147. Luôn đặt mình vào vị trí của người khác. Nếu trong vị trí đó, bạn thấy đau, có lẽ người kia cũng sẽ cảm thấy như vậy.}}
+
+\def\vnlipsum@cxlviii{\g@addto@macro\vnlipsumexp{148. Đừng hạ thấp giá trị bản thân bằng cách so sánh mình với những người khác. Đó là vì mỗi chúng ta là những con người hoàn toàn khác nhau, chúng ta là những cá nhân độc lập với những tài năng riêng biệt.}}
+
+\def\vnlipsum@cxlix{\g@addto@macro\vnlipsumexp{149. Chớ để cuộc sống trôi tuột qua kẽ tay vì mãi đắm mình trong quá khứ hoặc mơ mộng ảo tưởng về tương lai. Hãy tận hưởng cuộc sống trong từng khoảnh khắc, bạn sẽ cảm thấy từng ngày trôi qua thật trọn vẹn.}}
+
+\def\vnlipsum@cl{\g@addto@macro\vnlipsumexp{150. Chớ vội vã băng nhanh qua cuộc đời đến nỗi quên mất mình đến từ nơi nào và điểm dừng chân sẽ là ở đâu.}}
+
+\endinput
+%%
+%% End of file `vnlipsum.sty'.

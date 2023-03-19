@@ -1,0 +1,43 @@
+\documentclass[unicode]{beamer}
+\usetheme{Madrid}
+\usepackage[framechange]{colourchange}
+\usepackage[utf8]{vietnam}
+\usepackage{vnlipsum}
+\title[\textbf{Mụclụcvàsốtrêntiêuđềtrongbeamer}]{\textbf{Mụclụcvàsốtrêntiêuđềtrongbeamer}}
+\author{NguyễnHữuĐiển}
+\institute[ĐHKHTNHàNội]{\textbf{KhoaToán--Cơ--Tinhọc}\\
+	\textbf{ĐạihọcĐHKHTN-ĐạihọcQuốcgiaHàNội}}
+\date{}
+
+\newenvironment{vframe}[1]{%
+	\begin{frame}[fragile,environment=vframe,
+		allowframebreaks]{#1}}
+	{\end{frame}}
+
+\setbeamertemplate{frametitle continuation}[from second][(tiếptục)]
+\setbeamertemplate{sectionintoc}[ballnumbered]
+\setbeamertemplate{subsectionintoc}[subsectionsnumbered]
+
+
+\begin{document}
+
+
+
+	\frame{
+		\begin{figure}[!ht]
+			\centering
+			\includegraphics[height=1.6cm,width=1.4cm]{dsds}
+		\end{figure}
+		\maketitle
+	}
+	\begin{frame}{Nộidung}
+		\tableofcontents
+	\end{frame}
+	\AtBeginSection[]{
+		\begin{frame}{Nộidung}
+			\tableofcontents[currentsection]
+		\end{frame}
+	}
+	\section{Giớithiệu}
+	........................................
+\end{document}
